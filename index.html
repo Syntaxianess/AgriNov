@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgriNova Biotech | Cultivating Tomorrow</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      color: #1a1a1a;
+      background-color: #f5fff5;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: rgba(0, 100, 0, 0.95);
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1.5rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+      height: 60px; /* Fixed header height for better alignment */
+    }
+
+    header img {
+      height: 45px;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile menu button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .bar {
+      height: 3px;
+      width: 25px;
+      background-color: white;
+      margin: 4px 0;
+      border-radius: 2px;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 0 1rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px 5px #000;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    .hero button {
+      margin-top: 2rem;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 25px;
+      background-color: #2ecc71;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .hero button:hover {
+      background-color: #27ae60;
+    }
+
+    section {
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .about, .product, .contact {
+      background-color: #fff;
+      border-radius: 20px;
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 3rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #145a32;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+
+    p {
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .gallery img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: 0.4s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .image-popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 20;
+      padding: 1rem;
+    }
+
+    .popup-content {
+      background: white;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 600px;
+      padding: 1.5rem;
+      text-align: center;
+      position: relative;
+      animation: slideIn 0.5s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .popup-content img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #145a32;
+      font-weight: bold;
+    }
+
+    footer {
+      background-color: #145a32;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0.3rem 1rem;
+        height: 55px; /* Compact header for phones */
+      }
+
+      header img {
+        height: 40px;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: rgba(0, 100, 0, 0.95);
+        position: absolute;
+        top: 55px; /* ✅ Matches header height, removes white gap */
+        left: 0;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      nav a {
+        margin: 10px 0;
+        text-align: center;
+      }
+
+      .hero h1 { font-size: 2.2rem; }
+      .hero p { font-size: 1rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="Logo.png" alt="AgriNova Logo" />
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <nav id="navbar">
+      <a href="#about">About</a>
+      <a href="#product">Product</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>AgriNova Biotech</h1>
+    <p>Innovating Nature for Sustainable Growth</p>
+    <button onclick="scrollToSection('about')">Learn More</button>
+  </section>
+
+  <section id="about" class="about">
+    <h2>About Us</h2>
+    <p>
+      AgriNova Biotech is a Philippine-based agricultural biotechnology startup dedicated to creating eco-friendly solutions that enhance soil health and crop productivity. Our mission is to harness biotechnology to promote sustainable farming and food security for future generations.
+    </p>
+  </section>
+
+  <section id="product" class="product">
+    <h2>Our Product: RootSmart™ Bio-Enhancer</h2>
+    <p>
+      RootSmart™ is a bioengineered microbial fertilizer that strengthens root systems, improves nutrient absorption, and reduces chemical fertilizer use by up to 60%. It’s designed to help Filipino farmers grow healthier crops while protecting the environment.
+    </p>
+  </section>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <p>Scenes from sustainable farms across the Philippines</p>
+    <div class="gallery">
+      <img src="corn.jpg" alt="Corn field" onclick="openPopup('corn.jpg', 'AgriNova helps corn farmers by improving root strength, enhancing nutrient absorption, and increasing yield while reducing chemical fertilizer use.')">
+      <img src="rice.jpg" alt="Rice farm" onclick="openPopup('rice.jpg', 'AgriNova supports rice growers with eco-friendly microbes that enrich soil health and boost grain productivity sustainably.')">
+      <img src="banana.jpg" alt="Banana plantation" onclick="openPopup('banana.jpg', 'AgriNova assists banana farms by providing bio-enhanced soil microbes that protect roots and improve growth in tropical climates.')">
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <p>📍 Roxas, Oriental Mindoro, Philippines</p>
+    <p>📧 agrinova.biotech@gmail.com</p>
+    <p>📞 +63 0991 136 5344</p>
+  </section>
+
+  <footer>
+    © 2025 AgriNova Biotech — Cultivating Tomorrow
+  </footer>
+
+  <div class="image-popup" id="popup">
+    <div class="popup-content">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <img id="popup-img" src="" alt="">
+      <p id="popup-text"></p>
+    </div>
+  </div>
+
+  <script>
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    }
+
+    function toggleMenu() {
+      const navbar = document.getElementById("navbar");
+      navbar.classList.toggle("active");
+    }
+
+    const navLinks = document.querySelectorAll("nav a");
+    navLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        const navbar = document.getElementById("navbar");
+        navbar.classList.remove("active");
+      });
+    });
+
+    function openPopup(imgSrc, text) {
+      document.getElementById("popup-img").src = imgSrc;
+      document.getElementById("popup-text").innerText = text;
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+</body>
+</html>
