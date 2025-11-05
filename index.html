@@ -29,13 +29,12 @@
       width: 100%;
       top: 0;
       z-index: 10;
-      height: 60px; /* Fixed header height for better alignment */
+      height: 60px;
     }
 
     header img {
       height: 45px;
       border-radius: 50%;
-      transition: 0.3s;
     }
 
     nav {
@@ -55,7 +54,6 @@
       text-decoration: underline;
     }
 
-    /* Mobile menu button */
     .menu-toggle {
       display: none;
       flex-direction: column;
@@ -134,6 +132,22 @@
       color: #333;
     }
 
+    .product button {
+      padding: 1rem 2rem;
+      background-color: #27ae60;
+      color: white;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 1rem;
+    }
+
+    .product button:hover {
+      background-color: #219150;
+    }
+
     .gallery {
       display: flex;
       flex-wrap: wrap;
@@ -184,14 +198,8 @@
     }
 
     @keyframes slideIn {
-      from {
-        transform: translateY(50px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     .popup-content img {
@@ -219,13 +227,12 @@
       margin-top: 3rem;
     }
 
-    /* Responsive Design */
     @media (max-width: 768px) {
       header {
         flex-wrap: wrap;
         justify-content: space-between;
         padding: 0.3rem 1rem;
-        height: 55px; /* Compact header for phones */
+        height: 55px;
       }
 
       header img {
@@ -242,13 +249,11 @@
         width: 100%;
         background: rgba(0, 100, 0, 0.95);
         position: absolute;
-        top: 55px; /* ✅ Matches header height, removes white gap */
+        top: 55px;
         left: 0;
       }
 
-      nav.active {
-        display: flex;
-      }
+      nav.active { display: flex; }
 
       nav a {
         margin: 10px 0;
@@ -291,19 +296,19 @@
   </section>
 
   <section id="product" class="product">
-    <h2>Our Product: RootSmart™ Bio-Enhancer</h2>
-    <p>
-      RootSmart™ is a bioengineered microbial fertilizer that strengthens root systems, improves nutrient absorption, and reduces chemical fertilizer use by up to 60%. It’s designed to help Filipino farmers grow healthier crops while protecting the environment.
-    </p>
+    <h2>Our Product</h2>
+    <button onclick="openPopup('product.jpg', 'RootSmart™ Bio-Enhancer', 'RootSmart™ is a bioengineered microbial fertilizer that strengthens root systems, improves nutrient absorption, and reduces chemical fertilizer use by up to 60%. It’s designed to help Filipino farmers grow healthier crops while protecting the environment.')">
+      Learn More About RootSmart™
+    </button>
   </section>
 
   <section id="gallery">
     <h2>Gallery</h2>
     <p>Scenes from sustainable farms across the Philippines</p>
     <div class="gallery">
-      <img src="Corn.jpg" alt="Vorn field" onclick="openPopup('Corn.jpg', 'AgriNova helps corn farmers by improving root strength, enhancing nutrient absorption, and increasing yield while reducing chemical fertilizer use.')">
-      <img src="Rice.jpg" alt="Rice farm" onclick="openPopup('Rice.jpg', 'AgriNova supports rice growers with eco-friendly microbes that enrich soil health and boost grain productivity sustainably.')">
-      <img src="banana.jpg" alt="Banana plantation" onclick="openPopup('banana.jpg', 'AgriNova assists banana farms by providing bio-enhanced soil microbes that protect roots and improve growth in tropical climates.')">
+      <img src="coorn.jpg" alt="Corn field" onclick="openPopup('coorn.jpg', 'Corn Growth', 'AgriNova helps corn farmers improve yield while reducing chemical use.')">
+      <img src="riice.jpg" alt="Rice farm" onclick="openPopup('riice.jpg', 'Rice Sustainability', 'AgriNova supports rice growers with eco-friendly microbes that enrich soil health.')">
+      <img src="banana.jpg" alt="Banana plantation" onclick="openPopup('banana.jpg', 'Banana Growth', 'AgriNova assists banana farms with bio-enhanced microbes that protect roots.')">
     </div>
   </section>
 
@@ -322,6 +327,7 @@
     <div class="popup-content">
       <span class="close-btn" onclick="closePopup()">&times;</span>
       <img id="popup-img" src="" alt="">
+      <h3 id="popup-title"></h3>
       <p id="popup-text"></p>
     </div>
   </div>
@@ -344,8 +350,9 @@
       });
     });
 
-    function openPopup(imgSrc, text) {
+    function openPopup(imgSrc, title, text) {
       document.getElementById("popup-img").src = imgSrc;
+      document.getElementById("popup-title").innerText = title;
       document.getElementById("popup-text").innerText = text;
       document.getElementById("popup").style.display = "flex";
     }
@@ -355,4 +362,4 @@
     }
   </script>
 </body>
-    </html>
+</html>
